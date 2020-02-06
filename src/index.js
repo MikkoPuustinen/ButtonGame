@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import socketIOClient from "socket.io-client";
 import './index.css'
-
-
+// const endpoint = 'http://localhost:3000/'
+const endpoint = 'https://pressthebuttongame.herokuapp.com/'
 
 const TheButton = (props) => {
     return (
@@ -39,7 +39,6 @@ const App = () => {
     const [ showReset, setShowReset ] = useState(false)
     const setDistanceToValue = (value) => setDistanceCounter(value)
     const setScoreToValue = (value) => setScoreCounter(value)
-    const endpoint = 'http://localhost:3000/'
     const socket = socketIOClient(endpoint)
     
     useEffect(() => {  
@@ -65,7 +64,7 @@ const App = () => {
     
     const handleClick = () => {
         
-        fetch('http://localhost:3000/click', {
+        fetch(endpoint + 'click', {
             credentials: 'include',
             headers : { 
                 'Content-Type': 'application/json',
@@ -110,7 +109,7 @@ const ResetField = (props) => {
 
     const handleReset = () => {
 
-        fetch('http://localhost:3000/reset', { 
+        fetch(endpoint + 'reset', { 
             credentials: 'include',
             headers : { 
                 'Content-Type': 'application/json',
